@@ -1,16 +1,20 @@
-import psycopg2
+import sqlite3
 import logging
 import folium
-logging.basicConfig(filename='test.log',
+logging.basicConfig(filename='map.log',
                     level=logging.INFO,
                     format='%(asctime)s:Line no-%(lineno)d:%(message)s')
 logger = logging.getLogger(__name__)
-conn = psycopg2.connect("host=localhost dbname=postgres user=postgres password = $PGPASSWORD")
+try:
+    conn = sqlite3.connect('euinvasive.sqlite')
+except:
+    logger.exception('failed to connect to sqlite database')
 cur = conn.cursor()
 cur.execute("""SELECT  
     decimalLatitude ,
     decimalLongitude 
     FROM occurrences
+    LIMIT 1000
 """)
 location_records = cur.fetchall()
 
@@ -34,4 +38,4 @@ m.save('map.html')
 if conn:
         cur.close()
         conn.close()
-        logger.info("PostgreSQL connection is closed")
+        logger.info("SQLite connection is closed")
