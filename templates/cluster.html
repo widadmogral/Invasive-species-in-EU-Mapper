@@ -52,7 +52,7 @@
                 "map",
                 {
                     center: [52.5373, 13.3603],
-                    zoom: 12,
+                    zoom: 8,
                     zoomControl: true,
                     preferCanvas: true,
                 }
@@ -67,8 +67,10 @@ var markerClusters = L.markerClusterGroup();
 const markers = {{points|tojson}};
 for ( var i = 0; i < markers.length; ++i )
 {
-  var popup = markers[i].lat +
-              '<br/>' + markers[i].long +
+  var popup = '<b> Observed at: </b>' + markers[i].lat + ',' + markers[i].long +
+              '<br/>' + '<b> Scientific Name: </b>' + markers[i].name +
+              '<br/>' + '<b> Recorded at: </b>' + markers[i].eventtime +
+              '<br/>' + '<b> Recorded by: </b>' + markers[i].rightsholder +
               '<br/>' + '<img src ='+ markers[i].pic+' style= "width:150px;height:150px;" >'
 
  var m = L.marker( [markers[i].lat, markers[i].long])

@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS occurrences(
 CREATE TABLE IF NOT EXISTS occurrence_images(
     image_id INTEGER PRIMARY KEY ,
     gbifid BIGINT,
-    format	TEXT,
     image_url TEXT,
-    license TEXT
+    license TEXT,
+    rights_holder TEXT
     );
