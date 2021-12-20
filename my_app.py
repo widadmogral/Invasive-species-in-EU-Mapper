@@ -25,4 +25,15 @@ if conn:
 def hello_world():
     return render_template('cluster.html',points = points)
 
-#return render_template("m.html")
+@app.route('/updateserver', methods=['POST'])
+ def webhook():
+  if request.method == 'POST':
+      repo = git.Repo('/home/widad/Invasive-species-in-EU-Mapper')
+      origin = repo.remotes.origin
+      origin.pull()
+      return 'Updated PythonAnywhere successfully', 200
+  else:
+      return 'Wrong event type', 400
+
+
+
