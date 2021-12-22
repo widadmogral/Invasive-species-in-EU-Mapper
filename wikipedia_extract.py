@@ -14,7 +14,8 @@ def main(specieslist):
     contents = [page.content for page in pages]
     for i in range(0,len(names)):
         csvname = r'{}'.format(names[i]) # using raw format to avoid interpretation of content
-        csvurl = r'{}'.format(urls[i])
+        csvurl = urls[i].replace(" ","%20")
+        csvurl = r'{}'.format(csvurl)
         csvcontent = r'{}'.format(contents[i])
         writer.writerow([csvname,csvurl,csvcontent])
     csvfile.close()

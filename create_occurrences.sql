@@ -16,3 +16,8 @@ CREATE TABLE IF NOT EXISTS occurrence_images(
     license TEXT,
     rights_holder TEXT
     );
+CREATE TABLE IF NOT EXISTS wiki_info(
+    scientific_name TEXT PRIMARY KEY ,
+    wiki_url TEXT,
+    summary TEXT
+    );

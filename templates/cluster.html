@@ -44,7 +44,7 @@
   </head>
 
   <body>
-  <div id = "map"  style="width: 800px; height: 800px; border: 1px solid #AAA;"></div>
+  <div id = "map"  style="width: 1500px; height: 800px; border: 1px solid #AAA;"></div>
 
    <script>
 
@@ -57,13 +57,15 @@
                     preferCanvas: true,
                 }
             );
+
+
 L.tileLayer(
                 "https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg",
                 {"attribution": "Map tiles by \u003ca href=\"http://stamen.com\"\u003eStamen Design\u003c/a\u003e, under \u003ca href=\"http://creativecommons.org/licenses/by/3.0\"\u003eCC BY 3.0\u003c/a\u003e. Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://creativecommons.org/licenses/by-sa/3.0\"\u003eCC BY SA\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
             ).addTo(map);
-
-
 var markerClusters = L.markerClusterGroup();
+
+
 const markers = {{points|tojson}};
 for ( var i = 0; i < markers.length; ++i )
 {
@@ -71,7 +73,10 @@ for ( var i = 0; i < markers.length; ++i )
               '<br/>' + '<b> Scientific Name: </b>' + markers[i].name +
               '<br/>' + '<b> Recorded at: </b>' + markers[i].eventtime +
               '<br/>' + '<b> Recorded by: </b>' + markers[i].rightsholder +
-              '<br/>' + '<img src ='+ markers[i].pic+' style= "width:150px;height:150px;" >'
+              '<br/>' + '<img src ='+ markers[i].pic+' style= "width:200px;height:200px;" >'+
+              '<br/>' + '<a href= ' + markers[i].wiki_url +'>Wikipedia link </a>'
+
+
 
  var m = L.marker( [markers[i].lat, markers[i].long])
                   .bindPopup(popup);
