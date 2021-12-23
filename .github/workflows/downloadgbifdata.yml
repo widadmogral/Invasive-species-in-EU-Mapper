@@ -4,8 +4,10 @@ env:
     GBIF_EMAIL: ${{ secrets.GBIF_EMAIL }}
     GBIF_PWD: ${{ secrets.GBIF_PWD }}
 on:
+  push:
+  workflow_dispatch:
   schedule:
-    - cron:  '12 21 * * *'
+    - cron:  '0 03 24 * *'
 
 jobs:
   scheduled:
