@@ -1,0 +1,119 @@
+
+  "creator": "${{GBIF_LOGIN}}",
+  "notificationAddresses": [
+    "${{GBIF_EMAIL}}"
+  ],
+  "sendNotification": true,
+  "format": "DWCA",
+  "predicate": {
+    "type": "and",
+    "predicates": [
+      {
+        "type": "equals",
+        "key": "BASIS_OF_RECORD",
+        "value": "HUMAN_OBSERVATION"
+      },
+      {
+        "type": "in",
+        "key": "COUNTRY",
+        "values": [
+          "AT",
+          "BE",
+          "BG",
+          "HR",
+          "CY",
+          "CZ",
+          "DK",
+          "EE",
+          "FI",
+          "FR",
+          "DE",
+          "GR",
+          "HU",
+          "IE",
+          "IT",
+          "LV",
+          "LU",
+          "MT",
+          "NL",
+          "PL",
+          "PT",
+          "RO",
+          "SK",
+          "SI",
+          "ES",
+          "SE"
+        ]
+      },
+      {
+        "type": "equals",
+        "key": "HAS_COORDINATE",
+        "value": "true"
+      },
+      {
+        "type": "equals",
+        "key": "HAS_GEOSPATIAL_ISSUE",
+        "value": "false"
+      },
+      {
+        "type": "equals",
+        "key": "MEDIA_TYPE",
+        "value": "Stillimage"
+      },
+      {
+        "type": "in",
+        "key": "TAXON_KEY",
+        "values": [
+          2498252,
+          3084923,
+          3170247,
+          3129663,
+          2882443,
+          2437394,
+          2706134,
+          2482499,
+          2765940,
+          5329212,
+          2225776,
+          2984306,
+          3034825,
+          3628745,
+          3642949,
+          2434271,
+          7978544,
+          2891770,
+          2865565,
+          2427091,
+          5420991,
+          2869311,
+          5289808,
+          2440946,
+          4264680,
+          5361762,
+          2433536,
+          5219858,
+          2227000,
+          2227064,
+          2498305,
+          2226990,
+          3086784,
+          2390064,
+          2227300,
+          5218786,
+          2362868,
+          2977647,
+          5219681,
+          2437450,
+          2480764,
+          6247411,
+          8879526,
+          5421039,
+          2443002,
+          5361785,
+          4033648,
+          5219683
+        ]
+      }
+    ]
+  }
+}
