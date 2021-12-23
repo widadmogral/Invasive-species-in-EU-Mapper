@@ -7,7 +7,7 @@ on:
   push:
   workflow_dispatch:
   schedule:
-    - cron:  '56 18 * * *'
+    - cron:  '27 19 * * *'
 
 jobs:
   scheduled:
@@ -23,6 +23,7 @@ jobs:
     - name: Send json request to gbif 
       run: |-
         ./gbif_apicall.sh
+        cat query.json
     - name: Commit and push if it changed
       run: |-
         git config user.name "Automated"
