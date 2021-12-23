@@ -19,7 +19,8 @@ jobs:
       run: |-
         pip install -r requirements.txt
         wget https://api.gbif.org/v1/occurrence/download/request/$(tail -1 tmp/gbifcurlresponse.txt)
-        unzip $(tail -1 tmp/gbifcurlresponse.txt).zip
+        type $(tail -1 tmp/gbifcurlresponse.txt)
+        unzip $(tail -1 tmp/gbifcurlresponse.txt)
     - name: transform data downloaded
       run: |-
         python3 gbif_populate_taxonkeys.py
