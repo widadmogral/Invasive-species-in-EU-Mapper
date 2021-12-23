@@ -10,6 +10,7 @@ Table of Contents
  * [Installation](#Installation-and-running)
  * [Usage](#Usage)
  * [Git Integration](#Git-integration)
+ * [Website](Website)
 
 ### Why?
 
@@ -47,8 +48,13 @@ This will run the flask web application that will run at http://127.0.0.1:5000 Y
 
 ### Usage
 ---
-Each observation of a confirmed Invasive species report is shown as markers on the map. If many markers are in an area, they are clustered together. Zoom into see individual markers. Clicking a marker will open a popup that will show details of a report with pictures. A wikipedia link is provided to give further information.
+Each observation of a confirmed Invasive species report is shown as markers on the map. If many markers are in an area, they are clustered together. 
 
+![img](img/map.png)
+
+Zoom into see individual markers. Clicking a marker will open a popup that will show details of a report with pictures. A wikipedia link is provided to give further information.
+
+![img](img/popup.png)
 
 ### Git integration
 -----
@@ -57,6 +63,11 @@ The data download from gbif.org is automated through github actions on the first
 `git pull` 
 
 if you would like to refresh downloaded data
+
+### Website
+-----
+A hosted version can be found in www.widad.pythonanywhere.com
+
 
 
 
