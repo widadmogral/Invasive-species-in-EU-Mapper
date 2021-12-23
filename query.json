@@ -1,7 +1,7 @@
 
-  "creator": "$GBIF_LOGIN",
+  "creator": "",
   "notificationAddresses": [
-    "$GBIF_EMAIL"
+    ""
   ],
   "sendNotification": true,
   "format": "DWCA",
