@@ -25,7 +25,7 @@ def create_map():
     on
     wiki_info.scientific_name
     LIKE
-    verbatimScientificName GROUP BY occurrence_images.image_id;  """)
+    verbatimScientificName GROUP BY occurrences.gbifid  """)
     location_records = cur.fetchall()
     points = [dict(lat=i[0], long=i[1], pic=i[2], name =i[3],eventtime = i[4], rightsholder = i[5], wiki_url = i[6]) for i in location_records]
     if conn:

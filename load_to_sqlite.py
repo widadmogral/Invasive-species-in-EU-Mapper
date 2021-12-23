@@ -47,7 +47,7 @@ def load_to_wiki_info(csvfile):
         to_db = [(i['verbatimScientificName'], i['wiki_url']) for i in dr]
 
     cur.executemany(
-        "INSERT OR IGNORE INTO wiki_info (scientific_name,wiki_url) VALUES (?, ?, ?);",
+        "INSERT OR IGNORE INTO wiki_info (scientific_name,wiki_url) VALUES (?, ?);",
         to_db)
     con.commit()
     con.close()
