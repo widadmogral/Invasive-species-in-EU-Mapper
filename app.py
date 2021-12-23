@@ -11,8 +11,21 @@ app.config['DEBUG'] = True
 def create_map():
     conn = sqlite3.connect('euinvasive.sqlite')
     cur = conn.cursor()
-    cur.execute("""SELECT  decimalLatitude, decimalLongitude, image_url, verbatimScientificName, eventTime , rights_holder, wiki_url FROM occurrences JOIN occurrence_images ON occurrences.gbifid = occurrence_images.gbifid JOIN wiki_info on  wiki_info.scientific_name LIKE verbatimScientificName;  
-                        """)
+    cur.execute("""
+    SELECT
+      decimalLatitude, decimalLongitude, image_url, verbatimScientificName, eventTime , rights_holder, wiki_url
+    FROM
+    occurrence_images
+    JOIN
+    occurrences
+    ON
+    occurrences.gbifid = occurrence_images.gbifid
+    LEFT JOIN
+    wiki_info
+    on
+    wiki_info.scientific_name
+    LIKE
+    verbatimScientificName GROUP BY occurrence_images.image_id;  """)
     location_records = cur.fetchall()
     points = [dict(lat=i[0], long=i[1], pic=i[2], name =i[3],eventtime = i[4], rightsholder = i[5], wiki_url = i[6]) for i in location_records]
     if conn:
