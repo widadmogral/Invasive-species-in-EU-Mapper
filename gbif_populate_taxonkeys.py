@@ -8,16 +8,16 @@ def modify_json_query():
     j = json.load(f)
     f.close()
     if j['predicate']['predicates'][5]['values']:
+        j['predicate']['predicates'][5]['values'] = []
         print('Taxon key field not empty in query.json')
-    else:
-        lines = gbiftaxon_key_file.readlines()
-        lines = [line.rstrip() for line in lines]
-        for line in lines:
-            j['predicate']['predicates'][5]['values'].append(int(line))
-        f = open('query.json', 'w')
-        json.dump(j, f, indent=4)
-        f.close()
-        print('query.json populated with invasive species ids')
+    lines = gbiftaxon_key_file.readlines()
+    lines = [line.rstrip() for line in lines]
+    for line in lines:
+        j['predicate']['predicates'][5]['values'].append(int(line))
+    f = open('query.json', 'w')
+    json.dump(j, f, indent=4)
+    f.close()
+    print('query.json populated with invasive species ids')
     gbiftaxon_key_file.close()
     f.close()
 
