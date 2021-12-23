@@ -6,6 +6,7 @@ app = Flask(__name__)
 #app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 #app.config['DEBUG'] = True
 
+
 @app.route('/')
 @app.route('/home')
 def create_map():
@@ -27,11 +28,21 @@ def create_map():
     LIKE
     verbatimScientificName GROUP BY occurrences.gbifid  """)
     location_records = cur.fetchall()
-    points = [dict(lat=i[0], long=i[1], pic=i[2], name =i[3],eventtime = i[4], rightsholder = i[5], wiki_url = i[6]) for i in location_records]
+    points = [
+        dict(
+            lat=i[0],
+            long=i[1],
+            pic=i[2],
+            name=i[3],
+            eventtime=i[4],
+            rightsholder=i[5],
+            wiki_url=i[6]) for i in location_records]
     if conn:
         cur.close()
         conn.close()
-    return render_template('cluster.html',points = points)
+    return render_template('cluster.html', points=points)
+
+
 '''
 @app.route('/search', methods=['GET', 'POST'])
 def search():
@@ -50,7 +61,9 @@ def search():
         return render_template('search.html', data=data)
     return render_template('search.html')
 '''
-@app.route('/updateserver', methods=['POST']) #github webhook
+
+
+@app.route('/updateserver', methods=['POST'])  # github webhook
 def webhook():
     if request.method == 'POST':
         repo = git.Repo('/home/widad/Invasive-species-in-EU-Mapper')
@@ -59,6 +72,3 @@ def webhook():
         return 'Updated PythonAnywhere successfully', 200
     else:
         return 'Wrong event type', 400
-
-
-
