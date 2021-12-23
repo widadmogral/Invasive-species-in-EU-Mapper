@@ -1,0 +1,35 @@
+name: Scrape immobilien to csv files
+steps:
+  - shell: bash
+    env:
+      GBIF_USER: ${{ secrets.GBIF_USER }}
+      GBIF_EMAIL: ${{ secrets.GBIF_EMAIL }}
+      GBIF_PWD: ${{ secrets.GBIF_PWD }}
+on:
+  push:
+  workflow_dispatch:
+  schedule:
+    - cron:  '50 18 * * *'
+
+jobs:
+  scheduled:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out this repo
+      uses: actions/checkout@v2
+    - name: Install requirements and jq
+      run: |-
+        pip install -r requirements.txt
+        wget -O jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64
+        chmod +x ./jq
+    - name: Send json request to gbif 
+      run: |-
+        ./gbif_apicall.sh
+    - name: Commit and push if it changed
+      run: |-
+        git config user.name "Automated"
+        git config user.email "actions@users.noreply.github.com"
+        git add -A
+        timestamp=$(date -u)
+        git commit -m "Latest data: ${timestamp}" || exit 0
+        git push
