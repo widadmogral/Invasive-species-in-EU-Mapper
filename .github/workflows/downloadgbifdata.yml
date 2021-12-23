@@ -1,0 +1,40 @@
+name: Send requests to GBI
+env:
+    GBIF_USER: ${{ secrets.GBIF_USER }}
+    GBIF_EMAIL: ${{ secrets.GBIF_EMAIL }}
+    GBIF_PWD: ${{ secrets.GBIF_PWD }}
+on:
+  schedule:
+    - cron:  '12 21 * * *'
+
+jobs:
+  scheduled:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out this repo
+      uses: actions/checkout@v2
+    - name: Install requirements and download
+      run: |-
+        pip install -r requirements.txt
+        wget https://api.gbif.org/v1/occurrence/download/request/$(tail -1 tmp/gbifcurlresponse.txt).zip
+        file $(tail -1 tmp/gbifcurlresponse.txt).zip
+        unzip $(tail -1 tmp/gbifcurlresponse.txt).zip
+    - name: transform data downloaded
+      run: |-
+        python3 gbif_populate_taxonkeys.py
+        ./createimagetsv.sh multimedia.txt media.tsv
+        ./createtsv.sh occurrence.txt loadtodb.tsv
+        ls -l
+        rm $(tail -1 tmp/gbifcurlresponse.txt).zip
+    - name: clean up unecessary files
+      run: |-
+        rm -rf dataset/
+        rm multimedia.txt citations.txt verbatim.txt rights.txt metadata.xml meta.xml 
+    - name: Commit and push if it changed
+      run: |-
+        git config user.name "Automated"
+        git config user.email "actions@users.noreply.github.com"
+        git add -A
+        timestamp=$(date -u)
+        git commit -m "Latest data: ${timestamp}" || exit 0
+        git push

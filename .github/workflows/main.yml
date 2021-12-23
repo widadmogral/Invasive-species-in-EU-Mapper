@@ -4,10 +4,8 @@ env:
     GBIF_EMAIL: ${{ secrets.GBIF_EMAIL }}
     GBIF_PWD: ${{ secrets.GBIF_PWD }}
 on:
-  push:
-  workflow_dispatch:
   schedule:
-    - cron:  '27 19 * * *'
+    - cron:  '37 19 * * *'
 
 jobs:
   scheduled:
@@ -19,11 +17,13 @@ jobs:
       run: |-
         pip install -r requirements.txt
         wget -O jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64
-        chmod +x ./jq
+        mv jq tmp/
+        chmod +x tmp/jq
     - name: Send json request to gbif 
       run: |-
         ./gbif_apicall.sh
         cat query.json
+        cat tmp/gbifcurlresponse.txt
     - name: Commit and push if it changed
       run: |-
         git config user.name "Automated"
