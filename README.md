@@ -11,6 +11,7 @@ Table of Contents
  * [Usage](#Usage)
  * [Git Integration](#Git-integration)
  * [Website](Website)
+ * [Logs](logs)
 
 ### Why?
 
@@ -68,7 +69,9 @@ if you would like to refresh downloaded data
 -----
 A hosted version can be found in www.widad.pythonanywhere.com
 
-
+### Logging
+-----
+To make debugging easier, error logs for database load can be found in database.log file and app.log for errors while loading the app.
 
 
 
