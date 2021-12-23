@@ -1,15 +1,13 @@
-name: Scrape immobilien to csv files
-steps:
-  - shell: bash
-    env:
-      GBIF_USER: ${{ secrets.GBIF_USER }}
-      GBIF_EMAIL: ${{ secrets.GBIF_EMAIL }}
-      GBIF_PWD: ${{ secrets.GBIF_PWD }}
+name: Send requests to GBI
+env:
+    GBIF_USER: ${{ secrets.GBIF_USER }}
+    GBIF_EMAIL: ${{ secrets.GBIF_EMAIL }}
+    GBIF_PWD: ${{ secrets.GBIF_PWD }}
 on:
   push:
   workflow_dispatch:
   schedule:
-    - cron:  '50 18 * * *'
+    - cron:  '56 18 * * *'
 
 jobs:
   scheduled:
