@@ -4,6 +4,9 @@ env:
     GBIF_EMAIL: ${{ secrets.GBIF_EMAIL }}
     GBIF_PWD: ${{ secrets.GBIF_PWD }}
 on:
+  push:
+    branches:
+      - main
   schedule:
     - cron:  '0 03 24 * *'
 
