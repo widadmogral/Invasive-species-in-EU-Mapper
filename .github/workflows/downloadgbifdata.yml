@@ -30,7 +30,7 @@ jobs:
     - name: clean up unecessary files
       run: |-
         rm -rf dataset/
-        rm multimedia.txt citations.txt verbatim.txt rights.txt metadata.xml meta.xml 
+        rm multimedia.txt citations.txt verbatim.txt rights.txt metadata.xml meta.xml occurrence.txt 
     - name: Commit and push if it changed
       run: |-
         git config user.name "Automated"
