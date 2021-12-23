@@ -7,7 +7,7 @@ on:
   push:
   workflow_dispatch:
   schedule:
-    - cron:  '55 19 * * *'
+    - cron:  '12 21 * * *'
 
 jobs:
   scheduled:
@@ -17,8 +17,20 @@ jobs:
       uses: actions/checkout@v2
     - name: Install requirements and download
       run: |-
-        pip install -r requirements.txt
+        pip -r install requirements.txt
         wget https://api.gbif.org/v1/occurrence/download/request/$(tail -1 tmp/gbifcurlresponse.txt)
+        unzip $(tail -1 tmp/gbifcurlresponse.txt).zip
+    - name: transform data downloaded
+      run: |-
+        python3 gbif_populate_taxonkeys.py
+        ./createimagetsv.sh multimedia.tsv media.tsv
+        ./createtsv.sh occurrence.txt loadtodb.tsv
+        rm $(tail -1 tmp/gbifcurlresponse.txt).zip
+    - name: clean up unecessary files
+        rm -rf dataset/
+        rm multimedia.txt citations.txt verbatim.txt rights.txt metadata.xml meta.xml
+        
+      run: |-
     - name: Commit and push if it changed
       run: |-
         git config user.name "Automated"
