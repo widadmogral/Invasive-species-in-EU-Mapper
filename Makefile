@@ -3,18 +3,12 @@ install: populate_database basic
 		@echo "Launching webpage"
 		flask run
 populate_database:
-					@echo "Downloading data from wikipedia"
-					@echo "This will take a while"
-					python3 wikipedia_extract.py
-					@echo "Transforming Data"
-					./createimagetsv.sh multimedia.tsv media.tsv
-					./createtsv.sh occurrence.txt loadtodb.tsv
 					@echo "Populating database"
 					python3 load_to_sqlite.py
 					@cleaning up unecessary files
 					@rm -rf dataset/
 					@rm multimedia.txt citations.txt verbatim.txt rights.txt metadata.xml meta.xml
-download_and_install: downloadgbif populate_database basic
+download_and_install: downloadgbif populate_database basic download_and_transform
 					@echo "Launching webpage"
 					flask run
 
@@ -34,3 +28,12 @@ basic:
 downloadjq:
 		wget -O jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64
 		chmod +x ./jq
+download_and_transform:
+		@echo "Downloading data from wikipedia"
+		@echo "This will take a while"
+		python3 wikipedia_extract.py
+		@echo "Transforming Data"
+		./createimagetsv.sh multimedia.tsv media.tsv
+		./createtsv.sh occurrence.txt loadtodb.tsv
+
+
