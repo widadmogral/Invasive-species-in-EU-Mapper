@@ -7,7 +7,6 @@ Table of Contents
 
  * [Why?](#why)
  * [Main data sources](#Main-data-sources)
- * [Feature implementation status](#Feature-implementation-status)
  * [Installation](#Installation-and-running)
  * [Usage](#Usage)
  * [Git Integration](#Git-integration)
@@ -31,34 +30,34 @@ I wanted to create a website that:
 ### Installation and running
 ---
 
-Select one of the following methods:
-
-#### Method 1:
 
 In this method you use the data from this repository. It is updated every month.
-On the command line Type:
-```git clone https://github.com/widadmogral/Invasive-species-in-EU-Mapper
+On the command line, type:
+
+```
+git clone https://github.com/widadmogral/Invasive-species-in-EU-Mapper
 cd Invasive-species-in-EU-Mapper/
- make install```
-This will also take care of installing additional dependencies. If you dont want the dependencies to persisit. consider running this in a virtual environment.
+ make install
+ ```
+
+This will also take care of installing additional dependencies. If you dont want the dependencies to persist, consider running this in a virtual environment.
 
 This will run the flask web application that will run at http://127.0.0.1:5000 You can open this in your web browser.
 
 
-#### Method 2:
-
-In this method you create your own dataset and dowload it from gbif.org. The second option will require you to create a username and login. You can also custimize countries you would like to see viewings for by editing the query.json file.
-
-
-``` make download_and_install```
-
 ### Usage
 ---
+Each observation of a confirmed Invasive species report is shown as markers on the map. If many markers are in an area, they are clustered together. Zoom into see individual markers. Clicking a marker will open a popup that will show details of a report with pictures. A wikipedia link is provided to give further information.
 
 
+### Git integration
+-----
+The data download from gbif.org is automated through github actions on the first of every month. Run
 
+`git pull` 
 
-#### Git integration
+if you would like to refresh downloaded data
+
 
 
 
