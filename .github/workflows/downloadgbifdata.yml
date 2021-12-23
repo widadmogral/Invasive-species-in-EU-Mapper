@@ -24,7 +24,7 @@ jobs:
     - name: transform data downloaded
       run: |-
         python3 gbif_populate_taxonkeys.py
-        ./createimagetsv.sh multimedia.tsv media.tsv
+        ./createimagetsv.sh multimedia.txt media.tsv
         ./createtsv.sh occurrence.txt loadtodb.tsv
         ls -l
         rm $(tail -1 tmp/gbifcurlresponse.txt).zip
