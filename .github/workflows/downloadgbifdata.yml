@@ -18,9 +18,9 @@ jobs:
     - name: Install requirements and download
       run: |-
         pip install -r requirements.txt
-        wget https://api.gbif.org/v1/occurrence/download/request/$(tail -1 tmp/gbifcurlresponse.txt)
-        type $(tail -1 tmp/gbifcurlresponse.txt)
-        unzip $(tail -1 tmp/gbifcurlresponse.txt)
+        wget https://api.gbif.org/v1/occurrence/download/request/$(tail -1 tmp/gbifcurlresponse.txt).zip
+        file $(tail -1 tmp/gbifcurlresponse.txt).zip
+        unzip $(tail -1 tmp/gbifcurlresponse.txt).zip
     - name: transform data downloaded
       run: |-
         python3 gbif_populate_taxonkeys.py
