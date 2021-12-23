@@ -25,6 +25,7 @@ jobs:
         python3 gbif_populate_taxonkeys.py
         ./createimagetsv.sh multimedia.tsv media.tsv
         ./createtsv.sh occurrence.txt loadtodb.tsv
+        ls -l
         rm $(tail -1 tmp/gbifcurlresponse.txt).zip
     - name: clean up unecessary files
       run: |-
