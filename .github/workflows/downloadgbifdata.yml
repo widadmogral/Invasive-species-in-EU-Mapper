@@ -5,7 +5,7 @@ env:
     GBIF_PWD: ${{ secrets.GBIF_PWD }}
 on:
   schedule:
-    - cron:  '12 21 * * *'
+    - cron:  '08 22 * * *'
 
 jobs:
   scheduled:
