@@ -4,11 +4,9 @@ env:
     GBIF_EMAIL: ${{ secrets.GBIF_EMAIL }}
     GBIF_PWD: ${{ secrets.GBIF_PWD }}
 on:
-  push:
   workflow_dispatch:
   schedule:
     - cron:  '0 03 24 * *'
-
 jobs:
   scheduled:
     runs-on: ubuntu-latest
@@ -31,7 +29,7 @@ jobs:
     - name: clean up unecessary files
       run: |-
         rm -rf dataset/
-        rm multimedia.txt citations.txt verbatim.txt rights.txt metadata.xml meta.xml 
+        rm multimedia.txt citations.txt verbatim.txt rights.txt metadata.xml meta.xml occurrence.txt 
     - name: Commit and push if it changed
       run: |-
         git config user.name "Automated"

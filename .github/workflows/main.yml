@@ -24,6 +24,9 @@ jobs:
         ./gbif_apicall.sh
         cat query.json
         cat tmp/gbifcurlresponse.txt
+    - name: Send json request to gbif 
+      run: |-
+        rm tmp/jq
     - name: Commit and push if it changed
       run: |-
         git config user.name "Automated"
