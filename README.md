@@ -11,6 +11,7 @@ Table of Contents
  * [Usage](#Usage)
  * [Git Integration](#Git-integration)
  * [Website](Website)
+ * [Architecture Diagram](Architecture-Diagram)
  * [Logs](logs)
 
 ### Why?
@@ -46,6 +47,8 @@ This will also take care of installing additional dependencies. If you dont want
 
 This will run the flask web application that will run at http://127.0.0.1:5000 You can open this in your web browser.
 
+Works well in Firefox and Chrome, Popups don't show up well on Safari 
+
 
 ### Usage
 ---
@@ -68,6 +71,10 @@ if you would like to refresh downloaded data
 ### Website
 -----
 A hosted version can be found in www.widad.pythonanywhere.com
+
+### Architecture Diagram
+-----
+![]img[arch_diagram.jpg]
 
 ### Logging
 -----
