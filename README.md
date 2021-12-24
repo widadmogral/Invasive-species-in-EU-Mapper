@@ -74,7 +74,7 @@ A hosted version can be found in www.widad.pythonanywhere.com
 
 ### Architecture Diagram
 -----
-![]img[arch_diagram.jpg]
+![img][arch_diagram.jpg]
 
 ### Logging
 -----
